@@ -1,4 +1,3 @@
-/*global define*/
 'use strict'
 
 class VersionFilter
