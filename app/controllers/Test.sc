@@ -7,33 +7,46 @@
  */
 
 
-import fr.janalyse.jmx.RichMBean
+import fr.janalyse.jmx.{RichAttribute, RichMBean}
 import jajmx._
 import play.api.libs.json._
+import play.api.libs.functional.syntax._
 
 val jmx = JMX()
 val domains = jmx.domains
 
 
+val attrWrites = new Writes[RichAttribute] {
+  def writes(attr: RichAttribute) = Json.obj(
+    "name" -> Json.toJson(attr.name) ,
+    "description" -> Json.toJson(attr.desc)
+  )
+}
+
 
 val mbeanWrites = new Writes[RichMBean] {
   def writes(m: RichMBean) = Json.obj(
     "name" -> Json.toJson(m.name),
-    "description" -> Json.toJson(m.domain)
+    "domain" -> Json.toJson(m.domain),
+    "attributes" -> Json.arr(m.attributes().map(attr => Json.toJson(attr)(attrWrites)))
   )
 }
 
-/*val mbeanWrites2 : Writes[RichMBean] = (
-    (__ \ 'name ).write[String] and
-      (__ \ 'domain ).write[String]
-   ) (unlift(RichMBean.unapply))*/
+//val mbeans = Json.toJson(jmx.mbeans().map(m => Json.toJson(m)(mbeanWrites)))
+val result = Json.toJson(jmx.mbeans().groupBy(m => m.domain).map(y => Json.obj("domain" -> y._1 ,
+  "mbeans" -> y._2.map(x => Json.toJson(x)(mbeanWrites)).toSeq)))
 
 
-val mbeans = jmx.mbeans()
+
+jmx.mbeans().map(m => m.mbeanInfo.getOperations)
 
 
-val json = Json.toJson(mbeans)
 
+
+
+
+
+//val json = Json.toJson(mbeans).map()
 /*for {
   domain <- jmx.domains
   mbean <- jmx.mbeans(domain + ":*")
@@ -43,20 +56,6 @@ val json = Json.toJson(mbeans)
   println(s"${mbean.name} - ${attr.name} = ${value}")
   println("*******************************************")
 }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
