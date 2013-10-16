@@ -1,3 +1,6 @@
+##Reactive JMX Console
+
+This reactive jmx console is a web application and intention is to provide all the functionality provided by jdk/jconsole swing application.
 
 
 ## Licence
