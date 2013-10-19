@@ -13,6 +13,8 @@ GET        /webjars/*file         controllers.WebJarAssets.at(file)
 
 # Home page
 GET        /                      controllers.Assets.at(path="/public", file="index.html")
+GET        /dashboard             controllers.Assets.at(path="/public", file="dashboard.html")
+GET        /login                 controllers.Assets.at(path="/public", file="login.html")
 
 # Map the JS resource paths
 GET        /*file                 controllers.Assets.at(path="/public", file)
