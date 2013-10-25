@@ -13,7 +13,10 @@ object ApplicationBuild extends Build {
     "org.webjars" % "font-awesome" % "3.2.1",
     "org.webjars" % "modernizr" % "2.6.2-1",
     "org.webjars" % "jquery" % "2.0.3-1",
+    "org.webjars" % "d3js" % "3.3.5",
     "org.webjars" %% "webjars-play" % "2.2.0",
+    "com.typesafe.akka" %% "akka-actor" % "2.2.1",
+    "com.typesafe.akka" %% "akka-slf4j" % "2.2.1",
     "fr.janalyse" %% "janalyse-jmx" % "0.6.3" % "compile"
   )
 

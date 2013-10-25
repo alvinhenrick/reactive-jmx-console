@@ -12,8 +12,8 @@ GET        /lib/require.js        controllers.WebJarAssets.requirejs
 GET        /webjars/*file         controllers.WebJarAssets.at(file)
 
 # Home page
+GET        /dashboard             controllers.Application.dashboard
 GET        /                      controllers.Assets.at(path="/public", file="index.html")
-GET        /dashboard             controllers.Assets.at(path="/public", file="dashboard.html")
 GET        /login                 controllers.Assets.at(path="/public", file="login.html")
 
 # Map the JS resource paths

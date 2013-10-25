@@ -6,6 +6,7 @@
         <link rel="stylesheet"  href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet"  href="stylesheets/vendors/metis/main.css"/>
         <link rel="stylesheet"  href="/webjars/font-awesome/3.2.1/css/font-awesome.css"/>
+        <link rel="stylesheet"  href="stylesheets/vendors/nvd3/nv.d3.css"/>
         <script type='text/javascript' src="/webjars/modernizr/2.6.2/modernizr.js"></script>
 </head>
 <body>
@@ -151,12 +152,11 @@
         <div class="outer">
             <div class="inner">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="box inverse">
                             <header>
                                 <h5>Line Chart</h5>
-
-                                <div class="toolbar">
+                                 <div class="toolbar">
                                     <ul class="nav pull-right">
                                         <li>
                                             <a class="accordion-toggle minimize-box" data-toggle="collapse"
@@ -168,7 +168,22 @@
                                 </div>
                                 <!-- /.toolbar -->
                             </header>
-                            <!--div class="body" id="trigo" style="height:250px; "></div-->
+                            <div ng-controller="ExampleCtrl">
+                                <nvd3-line-chart
+                                        data="exampleData"
+                                        id="exampleId"
+                                        width="600"
+                                        height="300"
+                                        showXAxis="true"
+                                        showYAxis="true"
+                                        tooltips="true"
+                                        interactive="true"
+                                        xAxisTickValues="[1378387500, 1378388100, 1378389900]"
+                                        xAxisTickFormat="xAxisTickFormatFunction()"
+                                        margin="{left:50,top:50,bottom:50,right:50}">
+                                    <svg></svg>
+                                </nvd3-line-chart>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,11 +234,10 @@
       <script type="text/javascript" src="/webjars/jquery/2.0.3/jquery.min.js"></script>
       <script type="text/javascript" src="/webjars/bootstrap/3.0.0/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="javascripts/vendors/metis/main.js"></script>
+      <script type="text/javascript" src="/webjars/d3js/3.3.5/d3.js"></script>
+      <script type="text/javascript" src="javascripts/vendors/nvd3/nv.d3.js"></script>
+      <script type="text/javascript" src="javascripts/vendors/nvd3/moment.js"></script>
       <script data-main="javascripts/main" src="lib/require.js"></script>
-<script>
-    //$(function () {
-      //  dashboard();
-    //});
-</script>
+
 </body>
 </html>

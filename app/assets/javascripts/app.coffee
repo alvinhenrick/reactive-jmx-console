@@ -1,6 +1,6 @@
 'use strict';
 
 define ["angular"], (angular) ->
-  angular.module("jmxconsole", [])
+  angular.module("jmxconsole", ['nvd3ChartDirectives'])
 
 

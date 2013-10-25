@@ -1,7 +1,20 @@
 'use strict';
 
-define "angular", ["webjars!angular-locale_en-us.js"], ->
-  angular
 
-require ["angular", "app", "./controllers", "./routes", "./directives", "./filters", "./services"], (angular) ->
+require.config
+  paths:
+    angular: "/webjars/angularjs/1.1.5/angular",
+    nvd3: "vendors/nvd3/angularjs-nvd3-directives"
+
+  shim:
+    angular:
+      exports: "angular"
+
+    nvd3:
+      deps: ["angular"]
+
+  priority: ["angular"]
+
+
+require ["angular", "app", "nvd3", "./controllers", "./routes", "./directives", "./filters", "./services"], (angular) ->
   angular.bootstrap(document, ["jmxconsole"])
