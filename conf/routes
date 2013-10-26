@@ -3,6 +3,7 @@
 # ~~~~
 
 GET        /domains               controllers.Domains.list
+GET        /indexWS               controllers.Metrics.indexWS
 
 # Obtain require.js with built-in knowledge of how webjars resources can be
 # resolved

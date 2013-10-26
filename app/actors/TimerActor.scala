@@ -60,7 +60,7 @@ class TimerActor extends Actor {
       // and send current time to the user,
       webSockets.foreach {
         case (userId, userChannel) =>
-          val json = Map("data" -> toJson("1"))
+          val json = Map("data" -> toJson(1))
           // writing data to tha channel,
           // will send data to all WebSocket opend form every user
           userChannel.channel push Json.toJson(json)
