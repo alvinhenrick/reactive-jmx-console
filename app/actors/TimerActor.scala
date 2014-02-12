@@ -12,11 +12,12 @@ import play.api.Logger
 import play.api.libs.concurrent.Execution.Implicits._
 
 import scala.concurrent.duration._
+import java.lang.management.ManagementFactory
 
 class TimerActor extends Actor {
 
   // crate a scheduler to send a message to this actor every socket
-  val cancellable = context.system.scheduler.schedule(0 second, 1 second, self, UpdateCharts())
+  val cancellable = context.system.scheduler.schedule(0 second, 10 second, self, UpdateCharts())
 
   case class UserDetail(userId: String, var channelsCount: Int, enumerator: Enumerator[JsValue], channel: Channel[JsValue])
 
@@ -58,9 +59,9 @@ class TimerActor extends Actor {
 
       webSockets.foreach {
         case (userId, userDetail) =>
-          val json = Map("data" -> toJson(1))
+          val json = Map("data" -> Json.obj("x"-> JsNumber(System.currentTimeMillis / 1000), "y" -> JsNumber(ManagementFactory.getOperatingSystemMXBean.getSystemLoadAverage())))
           // writing data to tha channel,
-          // will send data to all WebSocket opend form every user
+          // will send data to all WebSocket opened for every user
           userDetail.channel push Json.toJson(json)
       }
 

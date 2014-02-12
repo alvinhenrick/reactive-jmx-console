@@ -7,13 +7,8 @@ object ApplicationBuild extends Build {
   val appVersion = "1.0-SNAPSHOT"
 
   val appDependencies = Seq(
-    "org.webjars" % "angularjs" % "1.1.5-1",
+    "org.webjars" % "angularjs" % "1.2.12",
     "org.webjars" % "requirejs" % "2.1.8",
-    "org.webjars" % "bootstrap" % "3.0.0" exclude("org.webjars", "jquery") ,
-    "org.webjars" % "font-awesome" % "3.2.1",
-    "org.webjars" % "modernizr" % "2.6.2-1",
-    "org.webjars" % "jquery" % "2.0.3-1",
-    "org.webjars" % "d3js" % "3.3.5",
     "org.webjars" %% "webjars-play" % "2.2.0",
     "com.typesafe.akka" %% "akka-actor" % "2.2.1",
     "com.typesafe.akka" %% "akka-slf4j" % "2.2.1",

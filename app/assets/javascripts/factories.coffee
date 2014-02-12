@@ -9,7 +9,7 @@ class SocketService
       ws = new WebSocket("ws://localhost:9000/indexWS")
 
       ws.onopen = ->
-        service.callback "Succeeded to open a connection"
+        service.callback "Succeeded"
         return
 
       ws.onerror = ->

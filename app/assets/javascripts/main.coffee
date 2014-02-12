@@ -3,8 +3,9 @@
 
 require.config
   paths:
-    angular: "/webjars/angularjs/1.1.5/angular",
-    nvd3: "vendors/nvd3/angularjs-nvd3-directives"
+    angular: "/webjars/angularjs/1.2.12/angular",
+    angularroute: "/webjars/angularjs/1.2.12/angular-route",
+    nvd3: "../assets/lib/nvd3/angularjs-nvd3-directives"
 
   shim:
     angular:
@@ -13,8 +14,11 @@ require.config
     nvd3:
       deps: ["angular"]
 
+    angularroute:
+      deps: ["angular"]
+
   priority: ["angular"]
 
 
-require ["angular", "app", "nvd3", "./controllers", "./routes", "./directives", "./filters", "./services" ,"./factories"], (angular) ->
+require ["angular", "app", "controllers", "routes", "directives", "filters", "services" ,"factories"], (angular) ->
   angular.bootstrap(document, ["jmxconsole"])
