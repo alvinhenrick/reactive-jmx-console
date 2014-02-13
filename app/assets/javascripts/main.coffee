@@ -20,5 +20,5 @@ require.config
   priority: ["angular"]
 
 
-require ["angular", "app", "controllers", "routes", "directives", "filters", "services" ,"factories"], (angular) ->
+require ["angular","angularroute","nvd3", "app", "controllers", "routes", "directives", "filters", "services" ,"factories"], (angular) ->
   angular.bootstrap(document, ["jmxconsole"])

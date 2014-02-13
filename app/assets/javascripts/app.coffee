@@ -1,6 +1,6 @@
 'use strict';
 
-define ["angular","angularroute","nvd3"], (angular) ->
+define ["angular"], (angular) ->
   angular.module("jmxconsole", ['nvd3ChartDirectives','ngRoute'])
 
 

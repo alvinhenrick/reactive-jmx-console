@@ -13,7 +13,8 @@ class ExampleCtrl
     $scope.exampleData = [
      {
       key: "System Load Average"
-      values: [[1378387200.0, 1.8623046875], [1378387500.0, 1.7023046875], [1378387800.0, 126.92131333333332], [1378388100.0, 122.06958666666667], [1378388400.0, 126.50453], [1378388700.0, 168.14301666666668], [1378389000.0, 132.83243], [1378389300.0, 137.11919333333336], [1378389600.0, 152.85155], [1378389900.0, 133.26816], [1378390200.0, 178.5094466666667], [1378390500.0, 156.0947666666667]]
+#      values: [[1378387200.0, 1.8623046875], [1378387500.0, 1.7023046875], [1378387800.0, 126.92131333333332], [1378388100.0, 122.06958666666667], [1378388400.0, 126.50453], [1378388700.0, 168.14301666666668], [1378389000.0, 132.83243], [1378389300.0, 137.11919333333336], [1378389600.0, 152.85155], [1378389900.0, 133.26816], [1378390200.0, 178.5094466666667], [1378390500.0, 156.0947666666667]]
+      values: [[0,0]]
      }
     ]
 
@@ -39,10 +40,16 @@ class ExampleCtrl
       return if message == "Succeeded"
       response = angular.fromJson(message)
       $scope.$apply ->
-        data = $scope.exampleData
-        data[0].values.shift()
-        data[0].values.push([response.data.x,response.data.y])
-        $scope.exampleData = data
+        data = $scope.exampleData[0].values
+#        _.pick($scope.exampleData,"values")
+        data.push([response.data.x,response.data.y])
+        data = _.last(data,5)
+        $scope.exampleData = [
+          {
+            key: "System Load Average"
+            values: data
+          }
+        ]
         $log.info $scope.exampleData
         return
       return
