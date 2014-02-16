@@ -18,13 +18,18 @@ class ExampleCtrl
      }
     ]
 
-    $scope.xAxisTicksFunction = ->
-      $log.info "xAxisTicksFunction"
-      $log.info d3.svg.axis().ticks(d3.time.second, 10)
-      (d) -> d3.svg.axis().ticks d3.time.second, 10
+    $scope.xAxisTickValuesFunction = ->
+      (d) ->
+        tickVals = []
+        values = d[0].values
+        interestedTimeValuesArray = [0,10,20,30,40,50]
+        for i of values
+          tickVals.push values[i][0]  if interestedTimeValuesArray.indexOf(moment.unix(values[i][0]).second()) >= 0
+        console.log "xAxisTickValuesFunction", d
+        tickVals
 
     $scope.xAxisTickFormatFunction = ->
-      (d) -> d3.time.format("%H:%M") moment.unix(d).toDate()
+      (d) -> d3.time.format("%H:%M:%S") moment.unix(d).toDate()
 
     $scope.xFunction = ->
       (d) ->
@@ -41,9 +46,8 @@ class ExampleCtrl
       response = angular.fromJson(message)
       $scope.$apply ->
         data = $scope.exampleData[0].values
-#        _.pick($scope.exampleData,"values")
         data.push([response.data.x,response.data.y])
-        data = _.last(data,5)
+        data = _.last(data,10)
         $scope.exampleData = [
           {
             key: "System Load Average"
